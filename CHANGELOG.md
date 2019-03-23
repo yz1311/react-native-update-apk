@@ -1,5 +1,10 @@
 # Release Notes
 
+## 4.0.0
+
+- React-Native 0.59.2 brings TLS1.3 to all Android APIs, removing PatchSSLProvider workaround API
+  Brings in a dependency on `implementation('org.conscrypt:conscrypt-android:2.0.0')` for Android
+
 ## 3.2.4
 
 - Enhanced the README, changed TODO to match current state of the project

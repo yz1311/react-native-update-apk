@@ -22,8 +22,6 @@ react-native link react-native-fs
    the APK update). So you must add a FileProvider entry to your [AndroidManifest.xml](example/android/app/src/main/AndroidManifest.xml),
    and it will reference a "[filepaths](example/android/app/src/main/res/xml/filepaths.xml)" XML file. Both are demonstrated in the example as linked here.
 
-1. **Play Services** If you use Google Play Services, make sure to define 'googlePlayServicesVersion' as the correct version in [your main build.gradle](example/android/build.gradle) so you don't have crashes related to version mismatches. If you don't have 'com.google.android.gms:play-services-auth' as a dependency yet you will need to add it as a dependency in [your app build.gradle](example/android/app/build.gradle) as well - this is used to workaround SSL bugs for Android API16-20.
-
 1. **Permissions** For Android 25+ you need to add REQUEST_INSTALL_PACKAGES to your [AndroidManifest.xml](example/android/app/src/main/AndroidManifest.xml)
 
 **Please install and run the example to see how it works before opening issues**.
@@ -40,14 +38,8 @@ See the [Changelog](CHANGELOG.md) on github
 
 ## Testing
 
-This application has been tested on API16-API28 Android and will work for anything running API21+, plus any APIs between 16-20 that have Google Play Services. Specifically:
-
-- API16 (Android 4.0) and up HTTP Updates + Emulators or Real Devices: works fine
-- API21 (Android 5) and up HTTPS Updates + Emulators or Real Devices: works fine
-- API16-API20 (Android 4.x) HTTPS Updates + Emulators: fails - platform SSL bug + no Google Play Services to patch it on these old emulators
-- API16-API20 (Android 4.x) HTTPS Updates + Real Devices: works fine with Google Play Services to patch platform SSL bug
-
-The only conditions where it won't work on real devices are for HTTPS updates to Android 4.x devices that do not have Google Play Services - a very very small percentage of the market at this point. Use HTTP if it is vital to reach those devices.
+This application has been tested on API16-API28 Android and lightly on iOS (let's admit, it
+is not as useful for iOS since it just takes you to the App Store)
 
 ## Version JSON example
 
@@ -69,4 +61,6 @@ instead of a non-JSON XML document
 
 ## Library Dependency
 
-- react-native-fs
+- react-native-fs (at react-native / npm level)
+- conscrypt SSL library (at Java level)
+- Android Support library (at Java level)

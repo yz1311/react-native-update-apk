@@ -163,32 +163,4 @@ public class RNUpdateAPK extends ReactContextBaseJavaModule {
             reactContext.startActivity(intent);
         }
     }
-
-    @ReactMethod
-    public void patchSSLProvider(boolean force, boolean dialogIfRepairable, Promise p) {
-
-        // This is unnecessary for Android API20+, skip unless forced
-        if (!force && Build.VERSION.SDK_INT > 20) {
-            p.resolve(true);
-            return;
-        }
-
-        try {
-            ProviderInstaller.installIfNeeded(reactContext);
-            p.resolve(true);
-        } catch (GooglePlayServicesRepairableException e) {
-            // Thrown when Google Play Services is not installed, up-to-date, or enabled
-            // Show dialog to allow users to install, update, or otherwise enable Google Play services.
-            if (dialogIfRepairable) {
-                GoogleApiAvailability.getInstance().getErrorDialog(getCurrentActivity(), e.getConnectionStatusCode(), 0);
-            }
-            String message = "Google Play Services repairable but not usable right now";
-            Log.e("SecurityException", message);
-            p.reject(new Throwable(message));
-        } catch (GooglePlayServicesNotAvailableException e) {
-            String message = "Google Play Services not available";
-            Log.e("SecurityException", message);
-            p.reject(new Throwable(message));
-        }
-    }
 }
