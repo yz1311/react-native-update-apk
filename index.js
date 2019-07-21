@@ -128,9 +128,8 @@ export class UpdateAPK {
       return;
     }
     const URL =
-      "https://itunes.apple.com/us/app/apple-store/id" +
-      this.options.iosAppId +
-      "?mt=8";
+      "https://itunes.apple.com/lookup?id=" +
+      this.options.iosAppId;
     console.log("attempting to fetch " + URL);
     this.GET(
       URL,
